@@ -6,32 +6,20 @@ import java.util.*
 
 
 class NoteRepository {
-    private val dummyDataSource = DummyDataSource()
-
-
     private val notes = MutableLiveData<List<Note>>()
 
-    fun getNotes(): LiveData<List<Note>> {
-        notes.value = dummyDataSource.getNotes()
+    init {
+        notes.value = listOf(
+                Note("Skype family for Christmas", Date().apply { time = 1514203200 }),
+                Note("Visit Shrine for 初詣", Date().apply { time = 1514764799 })
+        )
+    }
 
+    fun getNotes(): LiveData<List<Note>> {
         return notes
     }
 
     fun saveNote(note: Note) {
-        TODO("Not implemented")
+        notes.value = notes.value?.plus(note) ?: listOf(note)
     }
-
-
-
-
-    private class DummyDataSource {
-        fun getNotes(): List<Note> {
-            return listOf(
-                Note("Skype family for Christmas", Date().apply { time = 1514203200 }),
-                Note("Visit Shrine for 初詣", Date().apply { time = 1514764799 })
-            )
-        }
-    }
-
-
 }

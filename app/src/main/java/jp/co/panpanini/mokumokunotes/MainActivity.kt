@@ -8,15 +8,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.content.DialogInterface
+import android.util.Log
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), NoteViewHolder.NoteSelectedListener {
 
     private val recyclerView by lazy {
         findViewById<RecyclerView>(R.id.recycler_view)
     }
 
     private val noteAdapter by lazy {
-        NoteAdapter()
+        NoteAdapter(this)
     }
 
     private val viewModel by lazy {
@@ -53,8 +56,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun transitionToAddNote() {
-        TODO("Not yet implemented")
+    override fun noteSelected(text: String) {
+        Log.d("MainActivity", text)
+        startActivity(NoteDetailActivity.createIntent(this, text))
     }
 
+
+    private fun transitionToAddNote() {
+        val dialog = InputDialogFlagment()
+        dialog.onOk = {
+            viewModel.saveNote(it)
+        }
+        dialog.show(supportFragmentManager, "tag")
+    }
 }

@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.view_note.view.*
 
-class NoteViewHolder(view: View): RecyclerView.ViewHolder(view) {
+class NoteViewHolder(view: View, val noteSelectedListener: NoteSelectedListener): RecyclerView.ViewHolder(view) {
 
     init {
-        view.setOnClickListener { /*Log.d("NoteViewHolder", "onClick")*/ }
+        view.setOnClickListener {
+            noteSelectedListener.noteSelected(label.text.toString())
+            Log.d("NoteViewHolder", label.text.toString())
+        }
     }
 
     private val label = view.label
@@ -20,7 +23,13 @@ class NoteViewHolder(view: View): RecyclerView.ViewHolder(view) {
     }
 
     companion object {
-        fun create(parent: ViewGroup) = NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_note, parent, false))
+        fun create(parent: ViewGroup, noteSelectedListener: NoteSelectedListener) = NoteViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.view_note, parent, false),
+                noteSelectedListener
+        )
     }
 
+    interface NoteSelectedListener {
+        fun noteSelected(text: String)
+    }
 }
