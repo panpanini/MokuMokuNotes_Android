@@ -9,15 +9,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.content.DialogInterface
+import android.util.Log
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), NoteViewHolder.NoteSelectedListener {
 
     private val recyclerView by lazy {
         findViewById<RecyclerView>(R.id.recycler_view)
     }
 
     private val noteAdapter by lazy {
-        NoteAdapter()
+        NoteAdapter(this)
     }
 
     private val viewModel by lazy {
@@ -53,6 +55,12 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun noteSelected(text: String) {
+        Log.d("MainActivity", text)
+
+    }
+
 
     private fun transitionToAddNote() {
         val dialog = InputDialogFlagment()
