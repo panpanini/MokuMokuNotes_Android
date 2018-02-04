@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.content.DialogInterface
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,7 +55,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun transitionToAddNote() {
-        viewModel.saveNote("のーと")
+        val dialog = InputDialogFlagment()
+        dialog.onOk = {
+            viewModel.saveNote(it)
+        }
+        dialog.show(supportFragmentManager, "tag")
     }
-
 }
