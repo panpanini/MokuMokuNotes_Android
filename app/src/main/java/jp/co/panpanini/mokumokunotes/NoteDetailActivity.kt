@@ -15,10 +15,15 @@ class NoteDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_detail)
 
+        val noteTitle = intent.getStringExtra(EXTRA_NOTE_TITLE)
+        noteTitleView.text = noteTitle
     }
 
     companion object {
+        private val EXTRA_NOTE_TITLE = NoteDetailActivity::class.java.simpleName + "extra.noteTitle"
+
         @JvmStatic
-        fun createIntent(context: Context) = Intent(context, NoteDetailActivity::class.java)
+        fun createIntent(context: Context, noteTitle: String)
+                = Intent(context, NoteDetailActivity::class.java).apply { putExtra(EXTRA_NOTE_TITLE, noteTitle) }
     }
 }

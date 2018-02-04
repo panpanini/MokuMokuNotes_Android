@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), NoteViewHolder.NoteSelectedListener {
 
     override fun noteSelected(text: String) {
         Log.d("MainActivity", text)
-        startActivity(NoteDetailActivity.createIntent(this))
+        startActivity(NoteDetailActivity.createIntent(this, text))
     }
 
 
