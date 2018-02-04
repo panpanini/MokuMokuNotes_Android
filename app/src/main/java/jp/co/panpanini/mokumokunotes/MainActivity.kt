@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun transitionToAddNote() {
-        TODO("Not yet implemented")
+        viewModel.saveNote("のーと")
     }
 
 }
