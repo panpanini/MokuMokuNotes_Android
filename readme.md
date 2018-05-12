@@ -16,10 +16,10 @@ fixing the Compile & Runtime errors, build an Android app.
    - Communicating with ViewModels
    - Updating View XML
    - Observing LiveData
-   
-## Quests
 
-### Running an Android App
+# Quests
+
+## Running an Android App
 Once you have cloned the App, lets run it! first, click the Run button in the toolbar
 ![run the app](images/run.png)
 
