@@ -16,6 +16,32 @@ fixing the Compile & Runtime errors, build an Android app.
    - Communicating with ViewModels
    - Updating View XML
    - Observing LiveData
+   
+## Quests
+
+### Running an Android App
+Once you have cloned the App, lets run it! first, click the Run button in the toolbar
+![run the app](images/run.png)
+
+You will then see a window to choose your device. Lets create a new emulator!
+![create new emulator](images/new_emulator.png)
+
+Lets choose a `Pixel 2` as our device, and press next.
+![pixel 2](images/pixel_2.png)
+
+We need to install a system image, so lets download one.
+![Download system image](images/download_system_image.png)
+
+Once the system image is installed, press finish, and then continue next.
+![install finished](images/install_finished.png)
+
+From here, we press finish, and our emulator will be created.
+![complete installation](images/complete.png)
+
+Then, we can select our Emulator and run the app!
+![run app](images/run_app.png)
+
+
 
 ## Author
 [Panini](https://twitter.com/callipan)
