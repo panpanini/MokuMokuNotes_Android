@@ -1,60 +1,71 @@
 package jp.co.panpanini.mokumokunotes
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.support.v4.app.Fragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val recyclerView by lazy {
-        findViewById<RecyclerView>(R.id.recycler_view)
-    }
+//    Quest 1: Run the project!
+    /*
+    There are several quests in this project to help you on your way! look for TODO comments to
+    find your way.
 
-    private val noteAdapter by lazy {
-        NoteAdapter()
-    }
+    Some useful keyboard shortcuts:
+    Run project ( CTRL + R )
+    Search project for keyword ( ⌘ + Shift + F )
+    Search project for class ( ⌘ + O )
+    Open recent files ( ⌘ + E )
+    Comment line ( ⌘ + / )
+    View Logcat ( ⌘ + 6 )
 
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(NoteViewModel::class.java)
-    }
+    First, lets clear the compile error by deleting the line before this comment.
 
+    Helpful hints:
+
+    Logcat is like the Xcode console - it will show you runtime errors.
+     */
+
+
+    // onCreate → viewDidLoad
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        recyclerView.adapter = noteAdapter
-
-        viewModel.notes.observe(this, Observer {
-            it?.let {
-                noteAdapter.addNotes(it)
-            }
-        })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        MenuInflater(this).inflate(R.menu.note_menu, menu)
-        // we must return a boolean to say we created the menu
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        // we must return a boolean to say that this menu item click was handled
-        return when (item?.itemId) {
-            R.id.add_note -> {
-                transitionToAddNote()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+        if (savedInstanceState == null) {
+            transitionToList()
         }
     }
 
-    private fun transitionToAddNote() {
-        TODO("Not yet implemented")
+    fun transitionBack() {
+        supportFragmentManager.popBackStack()
+    }
+
+    private fun transitionToList() {
+        val fragment = NoteListFragment.create()
+        showFragment(fragment, "list")
+    }
+
+    fun transitionToDetail(note: Note) {
+        val fragment = NoteDetailFragment.create(note)
+        showFragment(fragment, "detail", true)
+    }
+
+    fun transitionToCreate() {
+        val fragment = NoteCreateFragment.create()
+        showFragment(fragment, "create", true)
+    }
+
+    /**
+     * Show a fragment inside our MainActivity's content window
+     */
+    private fun showFragment(fragment: Fragment, tag: String? = null, addToBackStack: Boolean = false) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content, fragment, tag).apply {
+                if (addToBackStack) {
+                    addToBackStack(tag)
+                }
+            }
+            .commit()
     }
 
 }

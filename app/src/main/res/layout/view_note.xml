@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:minHeight="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp"
     android:foreground="?android:selectableItemBackground"
     app:elevation="2dp">
@@ -15,6 +16,7 @@
         android:layout_margin="8dp"
         android:layout_gravity="center_vertical"
         style="@style/Base.TextAppearance.AppCompat.Title"
+        tools:text="@tools:sample/lorem"
         />
 
 </android.support.v7.widget.CardView>

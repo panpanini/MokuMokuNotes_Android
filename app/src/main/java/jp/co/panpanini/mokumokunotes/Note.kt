@@ -1,5 +1,6 @@
 package jp.co.panpanini.mokumokunotes
 
+import java.io.Serializable
 import java.util.*
 
 data class Note(
@@ -7,4 +8,4 @@ data class Note(
         val createdAt: Date,
         val completed: Boolean = false,
         val completedAt: Date? = null
-)
+): Serializable

@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.view_note.view.*
 
-class NoteViewHolder(view: View): RecyclerView.ViewHolder(view) {
+class NoteViewHolder(view: View, private val onClick: (Note) -> Unit): RecyclerView.ViewHolder(view) {
 
-    init {
-        view.setOnClickListener { /*Log.d("NoteViewHolder", "onClick")*/ }
-    }
-
+    private val cardView = view
     private val label = view.label
 
     fun bind(note: Note) {
         label.text = note.text
+
+        cardView.setOnClickListener { onClick(note) }
     }
 
     companion object {
-        fun create(parent: ViewGroup) = NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_note, parent, false))
+        fun create(parent: ViewGroup, onClick: (Note) -> Unit)
+                = NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_note, parent, false), onClick)
     }
 
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MokuMoku Notes</string>
     <string name="add_note">Add Note</string>
+    <string name="save">Save</string>
 </resources>
