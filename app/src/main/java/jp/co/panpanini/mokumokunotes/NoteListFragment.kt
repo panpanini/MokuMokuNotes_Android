@@ -35,17 +35,17 @@ class NoteListFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        TODO("initialize the RecyclerView's adapter")
         // A RecyclerView is like a UITableView,
         // and an adapter is like a UITableViewDataSource.
-        // We should set our noteAdapter to be the adapter for the RecyclerView.
-        // Once we have done that, then we can delete the TODO
+        recyclerView.adapter = noteAdapter
+
+
         setupBindings()
 
     }
 
     private fun setupBindings() {
-        TODO("bind the ViewModel")
+        //TODO Quest 2: bind the ViewModel
         // Did you notice nothing was being displayed? We should Observe our ViewModel, to get
         // Updates when the data changes.
 //        viewModel.notes.observe(this, Observer {
