@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 
 class MainActivity : AppCompatActivity() {
 
-//    Quest 1: Run the project!
+    Quest 1: Run the project!
     /*
     There are several quests in this project to help you on your way! look for TODO comments to
     find your way.
